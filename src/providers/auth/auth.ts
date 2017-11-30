@@ -17,4 +17,8 @@ export class AuthProvider {
     return await this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password);
   }
 
+  async logout() {
+    return await this.afAuth.auth.signOut();
+  }
+
 }

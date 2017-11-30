@@ -7,19 +7,19 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
 import { RegisterPage } from './../pages/register/register';
 import { LoginPage } from './../pages/login/login';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthProvider } from '../providers/auth/auth';
+import { ModulesPage } from '../pages/modules/modules';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ListPage,
+    ModulesPage,
     LoginPage,
     RegisterPage
   ],
@@ -33,7 +33,7 @@ import { AuthProvider } from '../providers/auth/auth';
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage,
+    ModulesPage,
     LoginPage,
     RegisterPage
   ],
