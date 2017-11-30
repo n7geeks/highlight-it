@@ -1,3 +1,4 @@
+import { AuthProvider } from './../../providers/auth/auth';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { User } from '../../models/user';
@@ -12,10 +13,18 @@ export class LoginPage {
 
   user = {} as User;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    private authProvider: AuthProvider,
+    public navCtrl: NavController,
+    public navParams: NavParams) {
   }
 
-  login() {
+  login(user: User) {
+    this.authProvider.login(user).then(data => {
+      console.log("login successful : ", data);
+    }).catch(e => {
+      console.error("can't login : ", e);
+    });
   }
 
   register() {
