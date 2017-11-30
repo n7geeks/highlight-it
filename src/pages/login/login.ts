@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, ToastController } from 'ionic-angular';
 import { User } from '../../models/user';
 import { RegisterPage } from '../register/register';
+import { StorageProvider } from '../../providers/storage/storage';
 
 @IonicPage()
 @Component({
@@ -16,19 +17,29 @@ export class LoginPage {
 
   constructor(
     private authProvider: AuthProvider,
+    private storageProvider: StorageProvider,
     public navCtrl: NavController,
-    public toastCtrl: ToastController) {
+    public toastCtrl: ToastController
+  ) {
   }
 
   login(user: User) {
     this.authProvider.login(user).then(data => {
       console.log("login successful : ", data);
-      this.navCtrl.setRoot(HomePage);
+
+      this.storageProvider.setUserId(data.uid).then(uid => {
+        console.log("credentials saved : ", uid);
+        this.authProvider.user.uid = uid;
+        this.navCtrl.setRoot(HomePage);
+      }).catch(e => {
+        console.error("can't save credentials : ", e);
+      });
+
     }).catch(e => {
       console.error("can't login : ", e);
       let toast = this.toastCtrl.create({
         message: "Invalid email or password",
-        duration: 5000      
+        duration: 5000
       });
       toast.present();
     });

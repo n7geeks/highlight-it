@@ -1,3 +1,4 @@
+import { StorageProvider } from './../providers/storage/storage';
 import { FIREBASE_CONFIG } from './app.firebase.config';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -13,10 +14,12 @@ import { LoginPage } from './../pages/login/login';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { IonicStorageModule } from '@ionic/storage';
 import { AuthProvider } from '../providers/auth/auth';
 import { ModulesPage } from '../pages/modules/modules';
 import { DataProvider } from '../providers/data/data';
 import { ModuleComponent } from '../components/module/module';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,9 @@ import { ModuleComponent } from '../components/module/module';
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
     AngularFireAuthModule,
-    AngularFireDatabaseModule   
+    AngularFireDatabaseModule,
+    AngularFirestoreModule,
+    IonicStorageModule.forRoot(),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -49,7 +54,9 @@ import { ModuleComponent } from '../components/module/module';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
     DataProvider,
-    AngularFireDatabase
+    StorageProvider,
+    AngularFireDatabase,
+    //AngularFirestore,
   ]
 })
 export class AppModule {}

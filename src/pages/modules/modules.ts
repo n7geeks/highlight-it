@@ -25,7 +25,7 @@ export class ModulesPage {
   }
 
   addModuleModal() {
-    let profileModal = this.modalCtrl.create(ModuleComponent, null);
-    profileModal.present();
+    let moduleModal = this.modalCtrl.create(ModuleComponent, null);
+    moduleModal.present();
   }
 }
