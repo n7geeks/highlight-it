@@ -1,3 +1,4 @@
+import { HomePage } from './../home/home';
 import { AuthProvider } from './../../providers/auth/auth';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
@@ -21,11 +22,12 @@ export class RegisterPage {
   register(user: User) {
     this.authProvider.register(user).then(data => {
       console.log("registration successful ", data)
+
     }).catch(e => {
       console.error("error register : ", e)
     })
 
-    this.navCtrl.pop();
+    this.navCtrl.setRoot(HomePage);
   }
 
 }
