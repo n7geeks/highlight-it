@@ -3,11 +3,11 @@ import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class StorageProvider {
-
   constructor(
     private storage: Storage
   ) {
     console.log('Hello StorageProvider Provider');
+    //this.clear();
   }
 
   setUserId(uid) {
@@ -16,6 +16,10 @@ export class StorageProvider {
 
   getUserId() {
     return this.storage.get('uid');
+  }
+
+  clear() {
+    return this.storage.clear();
   }
 
 }

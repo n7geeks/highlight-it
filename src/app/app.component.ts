@@ -1,3 +1,4 @@
+import { StorageProvider } from './../providers/storage/storage';
 import { AuthProvider } from './../providers/auth/auth';
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform, ToastController } from 'ionic-angular';
@@ -7,7 +8,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { ModulesPage } from '../pages/modules/modules';
-import { StorageProvider } from '../providers/storage/storage';
 
 @Component({
   templateUrl: 'app.html'
@@ -24,8 +24,8 @@ export class MyApp {
     public statusBar: StatusBar, 
     public splashScreen: SplashScreen,
     private authProvider: AuthProvider,
+    private toastCtrl: ToastController,
     private storageProvider: StorageProvider,
-    private toastCtrl: ToastController
   ) {
     this.setRootPage();
     this.initializeApp();
@@ -55,23 +55,28 @@ export class MyApp {
   }
 
   setRootPage() {
-    if(this.authProvider.loggedIn) {
-      console.log("welcome back");
-      this.rootPage = HomePage;
-    } else {
-      this.rootPage = LoginPage;
-    }
+    this.storageProvider.getUserId().then(uid => {
+      if(uid) {
+        this.authProvider.user.uid = uid;
+        console.log("uid from authP", this.authProvider.user.uid);
+        this.rootPage = HomePage
+      } else {
+        console.log("there is no uid", this.authProvider.user.uid);
+        this.rootPage = LoginPage;
+      }
+    });
   }
 
   logout() {
-    this.authProvider.logout().then(() => {
-      console.log("logged out : ");
-      this.nav.setRoot(LoginPage);
-      let toast = this.toastCtrl.create({
-        message: "hope I see you again",
-        duration: 5000      
+    this.authProvider.logout().then((d) => {
+      console.log("logged out", d);
+
+      this.storageProvider.clear().then(d => {
+        this.nav.setRoot(LoginPage);
+      }).catch(e => {
+        console.error(e);
       });
-      toast.present();
+      
     }).catch(e => {
       console.error("Error : ", e);
     });

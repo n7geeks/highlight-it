@@ -28,11 +28,11 @@ export class LoginPage {
       console.log("login successful : ", data);
 
       this.storageProvider.setUserId(data.uid).then(uid => {
-        console.log("credentials saved : ", uid);
         this.authProvider.user.uid = uid;
+        console.log(this.authProvider.user.uid);
         this.navCtrl.setRoot(HomePage);
       }).catch(e => {
-        console.error("can't save credentials : ", e);
+        console.error(e);
       });
 
     }).catch(e => {
