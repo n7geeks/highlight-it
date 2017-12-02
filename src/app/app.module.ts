@@ -19,6 +19,7 @@ import { DataProvider } from '../providers/data/data';
 import { AddModuleComponent } from '../components/add-module/add-module';
 import { EditModuleComponent } from '../components/edit-module/edit-module';
 import { AddNoteComponent } from '../components/add-note/add-note';
+import { EditNoteComponent } from '../components/edit-note/edit-note';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { NotesPageModule } from '../pages/notes/notes.module';
 import { LoginPageModule } from '../pages/login/login.module';
@@ -31,6 +32,7 @@ import { RegisterPageModule } from '../pages/register/register.module';
     AddModuleComponent,
     EditModuleComponent,
     AddNoteComponent,
+    EditNoteComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,6 +54,7 @@ import { RegisterPageModule } from '../pages/register/register.module';
     AddModuleComponent,
     EditModuleComponent,
     AddNoteComponent,
+    EditNoteComponent,
   ],
   providers: [
     StatusBar,
