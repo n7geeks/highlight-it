@@ -1,7 +1,7 @@
 import { DataProvider } from './../../providers/data/data';
 import { Observable } from 'rxjs/Observable';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, ModalController} from 'ionic-angular';
+import { IonicPage, NavController, ModalController, ActionSheetController} from 'ionic-angular';
 import { AddModuleComponent } from '../../components/add-module/add-module';
 import { Module } from '../../models/module';
 import { EditModuleComponent } from '../../components/edit-module/edit-module';
@@ -18,7 +18,9 @@ export class ModulesPage {
   constructor(
     public navCtrl: NavController,
     private dataProvider: DataProvider,
-    public modalCtrl: ModalController) {
+    public modalCtrl: ModalController,
+    public actionSheetCtrl: ActionSheetController
+  ) {
     this.modules = this.dataProvider
       .getModules()
       .snapshotChanges()
@@ -47,6 +49,29 @@ export class ModulesPage {
   }
 
   delete(module: Module) {
-
+    this.actionSheetCtrl.create({
+      title: 'Are you sure ?',
+      buttons: [
+        {
+          text: 'Delete',
+          role: 'destructive',
+          handler: () => {
+            console.log('Destructive clicked');
+            this.dataProvider.deleteModule(module).then((m) => {
+              console.log(m)
+            }, e => {
+              console.error(e);
+            });
+          }
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    }).present();
   }
 }

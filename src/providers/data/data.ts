@@ -33,7 +33,7 @@ export class DataProvider {
   }
 
   deleteModule(module: Module) {
-
+    return this.afDatabase.list('modules').remove(module.key);
   }
 
 }
