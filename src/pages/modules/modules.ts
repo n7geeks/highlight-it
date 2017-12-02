@@ -49,20 +49,16 @@ export class ModulesPage {
     moduleModal.present();
   }
 
-  delete(module: Module) {
+  showOptions(module: Module) {
+    console.log(module);
     this.actionSheetCtrl.create({
-      title: 'Are you sure ?',
+      title: `${module.name}`,
       buttons: [
         {
-          text: 'Delete',
-          role: 'destructive',
+          text: 'Edit',
           handler: () => {
-            console.log('Destructive clicked');
-            this.dataProvider.deleteModule(module).then((m) => {
-              console.log(m)
-            }, e => {
-              console.error(e);
-            });
+            console.log("edit clicked");
+            this.edit(module);
           }
         },
         {
