@@ -1,0 +1,31 @@
+<ion-header>
+    <ion-navbar>
+      <ion-title>Note</ion-title>
+      <ion-buttons end>
+        <button ion-button clear (click)="dismiss()">
+          Close
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding>
+
+    <ion-item>
+      <ion-label floating>General Idea</ion-label>
+      <ion-input type="text" [(ngModel)]="note.generalIdea"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Summary</ion-label>
+      <ion-textarea class="summary" [(ngModel)]="note.summary" placeholder="Enter a summary"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Reminder</ion-label>
+      <ion-textarea class="reminder" [(ngModel)]="note.reminder"></ion-textarea>
+    </ion-item>
+  
+    <button ion-button clear block (click)="create(note)">Add</button>
+    
+  </ion-content>

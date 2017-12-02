@@ -1,0 +1,11 @@
+add-note {
+    .reminder textarea {
+        resize: vertical;
+        height: 100px;
+    }
+
+    .summary textarea {
+        resize: vertical;
+        height: 200px;
+    }
+}

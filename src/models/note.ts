@@ -1,8 +1,8 @@
 export interface Note {
     key?: string;
-    date: Date;
+    date: number;
     generalIdea: string;
-    summary: Text;
+    summary: string;
     reminder: string;
     mid: string;
 }

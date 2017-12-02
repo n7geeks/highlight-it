@@ -72,7 +72,9 @@ export class ModulesPage {
     }).present();
   }
 
-  goToNotes() {
-    this.navCtrl.push(NotesPage);
+  goToNotes(module: Module) {
+    this.navCtrl.push(NotesPage, {
+      'module': module
+    });
   }
 }
