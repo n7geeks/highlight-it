@@ -10,12 +10,12 @@
 <ion-content padding>
   <ion-list>
 
-    <ion-card *ngFor="let note of notes | async" (press)="showOptions(note)">
+    <ion-card *ngFor="let note of notes | async" (press)="showOptions(note)" (click)="goToDetails(note)">
       <ion-item>
         <h2>{{ note.generalIdea }}</h2>
         <p>{{ note.summary }}</p>
         <p>{{ note.reminder }}</p>
-        <p>{{ note.date | date:'dd/MM/yyyy HH:mm' }}</p>
+        <p>{{ note.date | date:'MMMM d, y HH:mm' }}</p>
       </ion-item>
     </ion-card>
 

@@ -1,6 +1,6 @@
 {
   "name": "notty",
-  "app_id": "",
+  "app_id": "4d857d95",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}

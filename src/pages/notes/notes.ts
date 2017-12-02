@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import { DataProvider } from '../../providers/data/data';
 import { AddNoteComponent } from '../../components/add-note/add-note';
 import { Note } from '../../models/note';
+import { NoteDetailsPage } from '../note-details/note-details';
 
 @IonicPage()
 @Component({
@@ -78,5 +79,11 @@ export class NotesPage {
           }
         ]
       }).present();
+    }
+
+    goToDetails(note: Note) {
+      this.navCtrl.push(NoteDetailsPage, {
+        'note': note
+      });
     }
 }

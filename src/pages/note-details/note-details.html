@@ -1,0 +1,44 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ note.generalIdea }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+  <ion-card>
+    <ion-card-header>
+      General Idea
+    </ion-card-header>
+    <ion-card-content>
+      {{ note.generalIdea }}
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      Summary
+    </ion-card-header>
+    <ion-card-content>
+      {{ note.summary }}
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      Reminder
+    </ion-card-header>
+    <ion-card-content>
+      {{ note.reminder }}
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      Last update
+    </ion-card-header>
+    <ion-card-content>
+      {{ note.date | date:'EEEE, MMMM d, y, hh:mm' }}
+    </ion-card-content>
+  </ion-card>
+  
+</ion-content>

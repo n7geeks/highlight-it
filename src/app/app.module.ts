@@ -24,6 +24,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { NotesPageModule } from '../pages/notes/notes.module';
 import { LoginPageModule } from '../pages/login/login.module';
 import { RegisterPageModule } from '../pages/register/register.module';
+import { NoteDetailsPageModule } from '../pages/note-details/note-details.module';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { RegisterPageModule } from '../pages/register/register.module';
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     AngularFirestoreModule,
+    NoteDetailsPageModule,
     IonicStorageModule.forRoot(),
   ],
   bootstrap: [IonicApp],

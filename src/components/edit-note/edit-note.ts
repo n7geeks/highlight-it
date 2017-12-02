@@ -1,5 +1,4 @@
 import { Note } from './../../models/note';
-import { AuthProvider } from './../../providers/auth/auth';
 import { DataProvider } from './../../providers/data/data';
 import { Component } from '@angular/core';
 import { ViewController, ActionSheetController } from 'ionic-angular';
@@ -15,7 +14,6 @@ export class EditNoteComponent {
   constructor(
     public viewCtrl: ViewController,
     private dataProvider: DataProvider,
-    private authProvider: AuthProvider,
     public actionSheetCtrl: ActionSheetController,
   ) {
     console.log('Hello EditNoteComponent Component');

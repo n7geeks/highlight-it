@@ -13,25 +13,25 @@ export class AddNoteComponent {
   note = {} as Note;
 
   constructor(
-      public viewCtrl: ViewController,
-      private dataProvider: DataProvider,
-      private storageProvider: StorageProvider,
-    ) {
-      console.log('Hello AddNoteComponent Component');
-      this.note.mid = this.viewCtrl.getNavParams().get('mid');
-    }
+    public viewCtrl: ViewController,
+    private dataProvider: DataProvider,
+    private storageProvider: StorageProvider,
+  ) {
+    console.log('Hello AddNoteComponent Component');
+    this.note.mid = this.viewCtrl.getNavParams().get('mid');
+  }
   
-    create(note: Note) {
-      console.log(note);
-      note.date = (new Date).getTime();
-      this.dataProvider.postNote(note).then(ref => {
-        console.log(ref.key);
-      });
-      this.dismiss();
-    }
-  
-    dismiss() {
-      this.viewCtrl.dismiss();
-    }
+  create(note: Note) {
+    console.log(note);
+    note.date = (new Date).getTime();
+    this.dataProvider.postNote(note).then(ref => {
+      console.log(ref.key);
+    });
+    this.dismiss();
+  }
+
+  dismiss() {
+    this.viewCtrl.dismiss();
+  }
 
 }
