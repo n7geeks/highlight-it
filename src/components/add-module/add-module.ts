@@ -5,10 +5,10 @@ import { ViewController } from 'ionic-angular';
 import { StorageProvider } from '../../providers/storage/storage';
 
 @Component({
-  selector: 'module',
-  templateUrl: 'module.html'
+  selector: 'add-module',
+  templateUrl: 'add-module.html'
 })
-export class ModuleComponent {
+export class AddModuleComponent {
 
   module = {} as Module
 
@@ -17,7 +17,7 @@ export class ModuleComponent {
     private dataProvider: DataProvider,
     private storageProvider: StorageProvider
   ) {
-    console.log('Hello ModuleComponent Component');
+    console.log('Hello AddModuleComponent Component');
     this.storageProvider.getUserId().then(uid => {
       this.module.uid = uid;
     }).catch(e => {
@@ -26,7 +26,9 @@ export class ModuleComponent {
   }
 
   create(module: Module) {
-    this.dataProvider.postModule(module);
+    this.dataProvider.postModule(module).then(ref => {
+      console.log(ref.key);
+    });
     this.dismiss();
   }
 

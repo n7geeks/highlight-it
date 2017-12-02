@@ -14,13 +14,26 @@ export class DataProvider {
   }
 
   postModule(module: Module) {
-    this.afDatabase.list('modules').push(module);
+    return this.afDatabase.list('modules').push(module);
   }
 
   getModules() {
     return this.afDatabase.list('modules', ref => {
       return ref.orderByChild('uid').equalTo(this.authProvider.user.uid)
-    }).valueChanges();
+    })
+  }
+
+  putModule(module: Module) {
+    console.log(module);
+    return this.afDatabase.list('modules').update(module.key, {
+      'name': module.name,
+      'hours': module.hours,
+      'uid': module.uid
+    });
+  }
+
+  deleteModule(module: Module) {
+
   }
 
 }

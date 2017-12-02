@@ -10,21 +10,24 @@
 <ion-content padding>
   <ion-list>
     <ion-item-sliding *ngFor="let module of modules | async">
+      
       <ion-item>
         <h2>{{ module.name }}</h2>
+        <i>{{ module.hours }}</i><i *ngIf="module.hours > 1">&nbsp;hours</i><i *ngIf="module.hours == 1">&nbsp;hour</i>
       </ion-item>
       <ion-item-options side="right">
-        <button ion-button color="warning">
+        <button ion-button color="warning" (click)="edit(module)">
           <ion-icon name="create"></ion-icon>
           Edit
         </button>
-        <button ion-button color="danger">
+        <button ion-button color="danger" (click)="delete(module)">
           <ion-icon name="trash"></ion-icon>
           Delete
         </button>
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
+  <!--<p *ngIf="!modules">No module</p>-->
   <ion-fab bottom right>
     <button ion-fab color="secondary" (click)="addModuleModal()"><ion-icon name="add"></ion-icon></button>
   </ion-fab>

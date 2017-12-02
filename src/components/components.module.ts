@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
-import { ModuleComponent } from './module/module';
+import { AddModuleComponent } from './add-module/add-module';
+import { EditModuleComponent } from './edit-module/edit-module';
 @NgModule({
-	declarations: [ModuleComponent],
+	declarations: [AddModuleComponent,
+    EditModuleComponent],
 	imports: [],
-	exports: [ModuleComponent]
+	exports: [AddModuleComponent,
+    EditModuleComponent]
 })
 export class ComponentsModule {}

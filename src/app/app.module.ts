@@ -18,7 +18,8 @@ import { IonicStorageModule } from '@ionic/storage';
 import { AuthProvider } from '../providers/auth/auth';
 import { ModulesPage } from '../pages/modules/modules';
 import { DataProvider } from '../providers/data/data';
-import { ModuleComponent } from '../components/module/module';
+import { AddModuleComponent } from '../components/add-module/add-module';
+import { EditModuleComponent } from '../components/edit-module/edit-module';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 @NgModule({
@@ -28,7 +29,8 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
     ModulesPage,
     LoginPage,
     RegisterPage,
-    ModuleComponent
+    AddModuleComponent,
+    EditModuleComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,7 +48,8 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
     ModulesPage,
     LoginPage,
     RegisterPage,
-    ModuleComponent
+    AddModuleComponent,
+    EditModuleComponent,
   ],
   providers: [
     StatusBar,
@@ -56,7 +59,6 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
     DataProvider,
     StorageProvider,
     AngularFireDatabase,
-    //AngularFirestore,
   ]
 })
 export class AppModule {}
