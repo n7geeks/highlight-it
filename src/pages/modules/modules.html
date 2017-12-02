@@ -9,13 +9,13 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item-sliding *ngFor="let module of modules | async">
+    <ion-item-sliding *ngFor="let module of modules | async" (click)="goToNotes(module)">
       
       <ion-item>
         <h2>{{ module.name }}</h2>
         <i>{{ module.hours }}</i><i *ngIf="module.hours > 1">&nbsp;hours</i><i *ngIf="module.hours == 1">&nbsp;hour</i>
       </ion-item>
-      
+
       <ion-item-options side="right">
         <button ion-button color="warning" (click)="edit(module)">
           <ion-icon name="create"></ion-icon>

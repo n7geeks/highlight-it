@@ -5,6 +5,7 @@ import { IonicPage, NavController, ModalController, ActionSheetController} from 
 import { AddModuleComponent } from '../../components/add-module/add-module';
 import { Module } from '../../models/module';
 import { EditModuleComponent } from '../../components/edit-module/edit-module';
+import { NotesPage } from '../notes/notes';
 
 @IonicPage()
 @Component({
@@ -73,5 +74,9 @@ export class ModulesPage {
         }
       ]
     }).present();
+  }
+
+  goToNotes() {
+    this.navCtrl.push(NotesPage);
   }
 }
