@@ -19,11 +19,11 @@ export class AddNoteComponent {
     ) {
       console.log('Hello AddNoteComponent Component');
       this.note.mid = this.viewCtrl.getNavParams().get('mid');
-      this.note.date = (new Date).getTime();
     }
   
     create(note: Note) {
       console.log(note);
+      note.date = (new Date).getTime();
       this.dataProvider.postNote(note).then(ref => {
         console.log(ref.key);
       });

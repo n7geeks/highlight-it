@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>notes</ion-title>
+    <ion-title>notes of&nbsp;{{ module.name }}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,7 +15,7 @@
         <h2>{{ note.generalIdea }}</h2>
         <p>{{ note.summary }}</p>
         <p>{{ note.reminder }}</p>
-        <p>{{ note.date | date:'dd-MM-yyyy HH:mm' }}</p>
+        <p>{{ note.date | date:'dd/MM/yyyy HH:mm' }}</p>
       </ion-item>
     </ion-card>
 

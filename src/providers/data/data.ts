@@ -50,11 +50,18 @@ export class DataProvider {
   }
 
   putNote(note: Note) {
-    //return this.
+    console.log(note);
+    return this.afDatabase.list('notes').update(note.key, {
+      'mid': note.mid,
+      'generalIdea': note.generalIdea,
+      'date': note.date,
+      'summary': note.summary,
+      'reminder': note.reminder
+    });
   }
 
   deleteNote(note: Note) {
-    
+    return this.afDatabase.list('notes').remove(note.key);
   }
 
 }
