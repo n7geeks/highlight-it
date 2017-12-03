@@ -15,6 +15,7 @@ import { LoadingProvider } from '../../providers/loading/loading';
 export class NotesPage {
 
   notes: Observable<any[]>;
+  notesCount: number = 1;
   module: Module;
   sub: Subscription
   
@@ -42,7 +43,9 @@ export class NotesPage {
         }))
       })
     
-    this.sub = this.notes.subscribe(() => {
+    this.sub = this.notes.subscribe((notes) => {
+      this.notesCount = notes.length;
+      console.log(notes);
       loader.dismiss()
     })
   }

@@ -20,7 +20,7 @@
     </ion-card>
 
   </ion-list>
-  <!--<p *ngIf="!notes">No note</p>-->
+  <p *ngIf="!notesCount">No notes for {{ module.name }}</p>
   <ion-fab bottom right>
     <button ion-fab color="secondary" (click)="addNoteModal()"><ion-icon name="add"></ion-icon></button>
   </ion-fab>

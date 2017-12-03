@@ -14,6 +14,7 @@ import { Subscription } from 'rxjs/Subscription';
 export class ModulesPage {
 
   modules: Observable<any[]>;
+  modulesCount:number = 1;
   sub: Subscription
 
   constructor(
@@ -36,7 +37,8 @@ export class ModulesPage {
           }))
         }
       )
-    this.sub = this.modules.subscribe(() => {
+    this.sub = this.modules.subscribe((modules) => {
+      this.modulesCount = modules.length;
       loader.dismiss();
     });
   }
