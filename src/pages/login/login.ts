@@ -1,6 +1,7 @@
+import { ToastProvider } from './../../providers/toast/toast';
 import { AuthProvider } from './../../providers/auth/auth';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 import { User } from '../../models/user';
 import { StorageProvider } from '../../providers/storage/storage';
 
@@ -16,8 +17,8 @@ export class LoginPage {
   constructor(
     private authProvider: AuthProvider,
     private storageProvider: StorageProvider,
+    private toastProvider: ToastProvider,
     public navCtrl: NavController,
-    public toastCtrl: ToastController
   ) {
   }
 
@@ -35,11 +36,7 @@ export class LoginPage {
 
     }).catch(e => {
       console.error("can't login : ", e);
-      let toast = this.toastCtrl.create({
-        message: "Invalid email or password",
-        duration: 5000
-      });
-      toast.present();
+      this.toastProvider.show('Invalid email or password', 5000);
     });
   }
 

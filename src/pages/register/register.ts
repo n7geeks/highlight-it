@@ -1,7 +1,8 @@
+import { ToastProvider } from './../../providers/toast/toast';
 import { HomePage } from './../home/home';
 import { AuthProvider } from './../../providers/auth/auth';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 import { User } from '../../models/user';
 import { StorageProvider } from '../../providers/storage/storage';
 
@@ -17,8 +18,9 @@ export class RegisterPage {
   constructor(
     private authProvider: AuthProvider,
     private storageProvider: StorageProvider,
-    public navCtrl: NavController, 
-    public toastCtrl: ToastController,) {
+    private toastProvider: ToastProvider,
+    public navCtrl: NavController,
+  ) {
   }
   
   register(user: User) {
@@ -35,11 +37,7 @@ export class RegisterPage {
 
     }).catch(e => {
       console.error("error register : ", e)
-      let toast = this.toastCtrl.create({
-        message: e.message,
-        duration: 5000
-      });
-      toast.present();
+      this.toastProvider.show(e.message, 5000);
     })
   }
 

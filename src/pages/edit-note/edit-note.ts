@@ -2,6 +2,7 @@ import { Note } from './../../models/note';
 import { DataProvider } from './../../providers/data/data';
 import { Component } from '@angular/core';
 import { ViewController, ActionSheetController, IonicPage } from 'ionic-angular';
+import { ToastProvider } from '../../providers/toast/toast';
 
 @IonicPage()
 @Component({
@@ -15,6 +16,7 @@ export class EditNotePage {
   constructor(
     public viewCtrl: ViewController,
     private dataProvider: DataProvider,
+    private toastProvider: ToastProvider,
     public actionSheetCtrl: ActionSheetController,
   ) {
     console.log('Hello EditNotePage');
@@ -25,6 +27,7 @@ export class EditNotePage {
   edit(note: Note) {
     note.date = (new Date).getTime();
     this.dataProvider.putNote(note).then(() => {
+      this.toastProvider.show('Note Saved!');
       this.dismiss();
     }, e => {
       console.log(e);
@@ -40,6 +43,7 @@ export class EditNotePage {
           handler: () => {
             console.log("delete clicked");
             this.dataProvider.deleteNote(note).then(() => {
+              this.toastProvider.show('Note Deleted!');
               this.dismiss();
             }, e => {
               console.log(e);

@@ -1,9 +1,9 @@
 import { Note } from './../../models/note';
-import { StorageProvider } from './../../providers/storage/storage';
 import { ViewController } from 'ionic-angular';
 import { Component } from '@angular/core';
 import { DataProvider } from '../../providers/data/data';
 import { IonicPage } from 'ionic-angular';
+import { ToastProvider } from '../../providers/toast/toast';
 
 @IonicPage()
 @Component({
@@ -17,7 +17,7 @@ export class AddNotePage {
   constructor(
     public viewCtrl: ViewController,
     private dataProvider: DataProvider,
-    private storageProvider: StorageProvider,
+    private toastProvider: ToastProvider,
   ) {
     console.log('Hello AddNotePage');
     this.note.mid = this.viewCtrl.getNavParams().get('mid');
@@ -26,7 +26,9 @@ export class AddNotePage {
   create(note: Note) {
     console.log(note);
     note.date = (new Date).getTime();
-    this.dataProvider.postNote(note);
+    this.dataProvider.postNote(note).then(() => {
+      this.toastProvider.show('Note Created!');
+    });
     this.dismiss();
   }
 

@@ -3,6 +3,7 @@ import { DataProvider } from './../../providers/data/data';
 import { Module } from './../../models/module';
 import { Component } from '@angular/core';
 import { ViewController, ActionSheetController, IonicPage } from 'ionic-angular';
+import { ToastProvider } from '../../providers/toast/toast';
 
 @IonicPage()
 @Component({
@@ -17,6 +18,7 @@ export class EditModulePage {
     public viewCtrl: ViewController,
     private dataProvider: DataProvider,
     private authProvider: AuthProvider,
+    private toastProvider: ToastProvider,
     public actionSheetCtrl: ActionSheetController,
   ) {
     console.log('Hello EditModulePage');
@@ -29,6 +31,7 @@ export class EditModulePage {
 
   edit(module: Module) {
     this.dataProvider.putModule(module).then(() => {
+      this.toastProvider.show(`${module.name} saved!`);
       this.dismiss();
     }, e => {
       console.log(e);
@@ -46,11 +49,11 @@ export class EditModulePage {
             console.log("delete clicked");
             if(module.notesCount != 0) {
               console.log('cannot delete module with notes')
-              // put toast
+              this.toastProvider.show('Cannot delete a module that contains notes');
             } else {
               this.dataProvider.deleteModule(module).then(() => {
                 console.log('module deleted')
-                //put toast
+                this.toastProvider.show(`${module.name} deleted!`);
               });
             }
             this.dismiss();

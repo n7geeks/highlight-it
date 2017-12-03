@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { ViewController } from 'ionic-angular';
 import { StorageProvider } from '../../providers/storage/storage';
 import { IonicPage } from 'ionic-angular/navigation/ionic-page';
+import { ToastProvider } from '../../providers/toast/toast';
 
 @IonicPage()
 @Component({
@@ -17,7 +18,8 @@ export class AddModulePage {
   constructor(
     public viewCtrl: ViewController,
     private dataProvider: DataProvider,
-    private storageProvider: StorageProvider
+    private storageProvider: StorageProvider,
+    private toastProvider: ToastProvider,
   ) {
     console.log('Hello AddModulePage');
     this.storageProvider.getUserId().then(uid => {
@@ -30,6 +32,7 @@ export class AddModulePage {
 
   create(module: Module) {
     this.dataProvider.postModule(module).then(ref => {
+      this.toastProvider.show(`${module.name} created!`);
       console.log(ref.key);
     });
     this.dismiss();
