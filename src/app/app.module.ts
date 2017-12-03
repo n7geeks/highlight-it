@@ -13,10 +13,10 @@ import { MyApp } from './app.component';
 import { AuthProvider } from '../providers/auth/auth';
 import { DataProvider } from '../providers/data/data';
 import { StorageProvider } from './../providers/storage/storage';
+import { ToastProvider } from '../providers/toast/toast';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { ToastProvider } from '../providers/toast/toast';
 
 @NgModule({
   declarations: [
