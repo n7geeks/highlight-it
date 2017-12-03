@@ -2,10 +2,7 @@ import { DataProvider } from './../../providers/data/data';
 import { Observable } from 'rxjs/Observable';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, ModalController, ActionSheetController} from 'ionic-angular';
-import { AddModuleComponent } from '../../components/add-module/add-module';
 import { Module } from '../../models/module';
-import { EditModuleComponent } from '../../components/edit-module/edit-module';
-import { NotesPage } from '../notes/notes';
 
 @IonicPage()
 @Component({
@@ -40,12 +37,12 @@ export class ModulesPage {
   }
 
   addModuleModal() {
-    let moduleModal = this.modalCtrl.create(AddModuleComponent, null);
+    let moduleModal = this.modalCtrl.create('AddModulePage');
     moduleModal.present();
   }
 
   edit(module: Module) {
-    let moduleModal = this.modalCtrl.create(EditModuleComponent, module);
+    let moduleModal = this.modalCtrl.create('EditModulePage', module);
     moduleModal.present();
   }
 
@@ -73,7 +70,7 @@ export class ModulesPage {
   }
 
   goToNotes(module: Module) {
-    this.navCtrl.push(NotesPage, {
+    this.navCtrl.push('NotesPage', {
       'module': module
     });
   }

@@ -5,17 +5,13 @@ import { Nav, Platform, ToastController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { HomePage } from '../pages/home/home';
-import { LoginPage } from '../pages/login/login';
-import { ModulesPage } from '../pages/modules/modules';
-
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = LoginPage;
+  rootPage: any = 'LoginPage';
 
   pages: Array<{title: string, component: any}>;
 
@@ -33,8 +29,8 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'Modules', component: ModulesPage }
+      { title: 'Home', component: 'HomePage' },
+      { title: 'Modules', component: 'ModulesPage' }
     ];
 
   }
@@ -59,10 +55,10 @@ export class MyApp {
       if(uid) {
         this.authProvider.user.uid = uid;
         console.log("uid from authP", this.authProvider.user.uid);
-        this.rootPage = HomePage
+        this.rootPage = 'HomePage'
       } else {
         console.log("there is no uid", this.authProvider.user.uid);
-        this.rootPage = LoginPage;
+        this.rootPage = 'LoginPage';
       }
     });
   }
@@ -72,7 +68,7 @@ export class MyApp {
       console.log("logged out", d);
 
       this.storageProvider.clear().then(d => {
-        this.nav.setRoot(LoginPage);
+        this.nav.setRoot('LoginPage');
       }).catch(e => {
         console.error(e);
       });

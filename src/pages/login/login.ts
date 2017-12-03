@@ -1,9 +1,7 @@
-import { HomePage } from './../home/home';
 import { AuthProvider } from './../../providers/auth/auth';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, ToastController } from 'ionic-angular';
 import { User } from '../../models/user';
-import { RegisterPage } from '../register/register';
 import { StorageProvider } from '../../providers/storage/storage';
 
 @IonicPage()
@@ -30,7 +28,7 @@ export class LoginPage {
       this.storageProvider.setUserId(data.uid).then(uid => {
         this.authProvider.user.uid = uid;
         console.log(this.authProvider.user.uid);
-        this.navCtrl.setRoot(HomePage);
+        this.navCtrl.setRoot('HomePage');
       }).catch(e => {
         console.error(e);
       });
@@ -46,7 +44,7 @@ export class LoginPage {
   }
 
   register() {
-    this.navCtrl.push(RegisterPage);
+    this.navCtrl.push('RegisterPage');
   }
 
 }

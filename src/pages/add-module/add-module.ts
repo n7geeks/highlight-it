@@ -3,12 +3,14 @@ import { Module } from './../../models/module';
 import { Component } from '@angular/core';
 import { ViewController } from 'ionic-angular';
 import { StorageProvider } from '../../providers/storage/storage';
+import { IonicPage } from 'ionic-angular/navigation/ionic-page';
 
+@IonicPage()
 @Component({
-  selector: 'add-module',
+  selector: 'page-add-module',
   templateUrl: 'add-module.html'
 })
-export class AddModuleComponent {
+export class AddModulePage {
 
   module = {} as Module
 
@@ -17,7 +19,7 @@ export class AddModuleComponent {
     private dataProvider: DataProvider,
     private storageProvider: StorageProvider
   ) {
-    console.log('Hello AddModuleComponent Component');
+    console.log('Hello AddModulePage');
     this.storageProvider.getUserId().then(uid => {
       this.module.uid = uid;
     }).catch(e => {

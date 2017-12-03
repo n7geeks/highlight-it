@@ -1,13 +1,14 @@
 import { Note } from './../../models/note';
 import { DataProvider } from './../../providers/data/data';
 import { Component } from '@angular/core';
-import { ViewController, ActionSheetController } from 'ionic-angular';
+import { ViewController, ActionSheetController, IonicPage } from 'ionic-angular';
 
+@IonicPage()
 @Component({
-  selector: 'edit-note',
+  selector: 'page-edit-note',
   templateUrl: 'edit-note.html'
 })
-export class EditNoteComponent {
+export class EditNotePage {
 
   note = {} as Note
 
@@ -16,7 +17,7 @@ export class EditNoteComponent {
     private dataProvider: DataProvider,
     public actionSheetCtrl: ActionSheetController,
   ) {
-    console.log('Hello EditNoteComponent Component');
+    console.log('Hello EditNotePage');
     this.note = this.viewCtrl.getNavParams().get('note');
     console.log(this.note)
   }

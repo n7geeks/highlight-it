@@ -3,12 +3,14 @@ import { StorageProvider } from './../../providers/storage/storage';
 import { ViewController } from 'ionic-angular';
 import { Component } from '@angular/core';
 import { DataProvider } from '../../providers/data/data';
+import { IonicPage } from 'ionic-angular';
 
+@IonicPage()
 @Component({
-  selector: 'add-note',
+  selector: 'page-add-note',
   templateUrl: 'add-note.html'
 })
-export class AddNoteComponent {
+export class AddNotePage {
 
   note = {} as Note;
 
@@ -17,7 +19,7 @@ export class AddNoteComponent {
     private dataProvider: DataProvider,
     private storageProvider: StorageProvider,
   ) {
-    console.log('Hello AddNoteComponent Component');
+    console.log('Hello AddNotePage');
     this.note.mid = this.viewCtrl.getNavParams().get('mid');
   }
   

@@ -2,13 +2,14 @@ import { AuthProvider } from './../../providers/auth/auth';
 import { DataProvider } from './../../providers/data/data';
 import { Module } from './../../models/module';
 import { Component } from '@angular/core';
-import { ViewController, ActionSheetController } from 'ionic-angular';
+import { ViewController, ActionSheetController, IonicPage } from 'ionic-angular';
 
+@IonicPage()
 @Component({
-  selector: 'edit-module',
+  selector: 'page-edit-module',
   templateUrl: 'edit-module.html'
 })
-export class EditModuleComponent {
+export class EditModulePage {
 
   module = {} as Module
 
@@ -18,7 +19,7 @@ export class EditModuleComponent {
     private authProvider: AuthProvider,
     public actionSheetCtrl: ActionSheetController,
   ) {
-    console.log('Hello EditModuleComponent Component');
+    console.log('Hello EditModulePage');
     this.module.uid = this.authProvider.user.uid;
     this.module.name = this.viewCtrl.getNavParams().get('name');
     this.module.key = this.viewCtrl.getNavParams().get('key');

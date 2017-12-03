@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Module</ion-title>
+    <ion-title>{{ module.name }}</ion-title>
     <ion-buttons end>
       <button ion-button clear (click)="dismiss()">
         Close
@@ -19,5 +19,6 @@
     <ion-input type="number" min="1" max="100" [(ngModel)]="module.hours"></ion-input>
   </ion-item>
 
-  <button ion-button clear block (click)="create(module)">Add</button>
+  <button ion-button clear block (click)="edit(module)">Edit</button>
+  <button ion-button clear block (click)="delete(module)">Delete</button>
 </ion-content>
