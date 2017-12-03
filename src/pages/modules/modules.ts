@@ -3,6 +3,8 @@ import { Observable } from 'rxjs/Observable';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, ModalController, ActionSheetController} from 'ionic-angular';
 import { Module } from '../../models/module';
+import { LoadingProvider } from '../../providers/loading/loading';
+import { Subscription } from 'rxjs/Subscription';
 
 @IonicPage()
 @Component({
@@ -12,13 +14,17 @@ import { Module } from '../../models/module';
 export class ModulesPage {
 
   modules: Observable<any[]>;
+  sub: Subscription
 
   constructor(
     public navCtrl: NavController,
     private dataProvider: DataProvider,
+    private loadingProvider: LoadingProvider,
     public modalCtrl: ModalController,
-    public actionSheetCtrl: ActionSheetController
+    public actionSheetCtrl: ActionSheetController,
   ) {
+    let loader = this.loadingProvider.show()
+    loader.present()
     this.modules = this.dataProvider
       .getModules()
       .snapshotChanges()
@@ -30,6 +36,9 @@ export class ModulesPage {
           }))
         }
       )
+    this.sub = this.modules.subscribe(() => {
+      loader.dismiss();
+    });
   }
 
   ionViewDidLoad() {
@@ -74,4 +83,8 @@ export class ModulesPage {
       'module': module
     });
   }
+
+  ngOnDestroy(){
+    this.sub.unsubscribe();
+  }    
 }

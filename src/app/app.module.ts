@@ -1,3 +1,4 @@
+import { ModulesPageModule } from './../pages/modules/modules.module';
 import { FIREBASE_CONFIG } from './app.firebase.config';
 import { BrowserModule } from '@angular/platform-browser';
 import { AngularFireModule } from 'angularfire2';
@@ -14,9 +15,12 @@ import { AuthProvider } from '../providers/auth/auth';
 import { DataProvider } from '../providers/data/data';
 import { StorageProvider } from './../providers/storage/storage';
 import { ToastProvider } from '../providers/toast/toast';
+import { LoadingProvider } from '../providers/loading/loading';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { HomeModule } from '../pages/home/home.module';
+import { LoginPageModule } from '../pages/login/login.module';
 
 @NgModule({
   declarations: [
@@ -30,6 +34,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     AngularFireDatabaseModule,
     AngularFirestoreModule,
     IonicStorageModule.forRoot(),
+    HomeModule,
+    LoginPageModule,
+    ModulesPageModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -44,6 +51,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     StorageProvider,
     AngularFireDatabase,
     ToastProvider,
+    LoadingProvider,
   ]
 })
 export class AppModule {}

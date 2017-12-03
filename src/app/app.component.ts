@@ -4,6 +4,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform, ToastController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { LoadingProvider } from '../providers/loading/loading';
 
 @Component({
   templateUrl: 'app.html'
@@ -22,6 +23,7 @@ export class MyApp {
     private authProvider: AuthProvider,
     private toastCtrl: ToastController,
     private storageProvider: StorageProvider,
+    private loadingProvider: LoadingProvider,
   ) {
     this.setRootPage();
     this.initializeApp();
@@ -64,16 +66,22 @@ export class MyApp {
   }
 
   logout() {
+    let loader = this.loadingProvider.show();
+    loader.present()
+
     this.authProvider.logout().then((d) => {
       console.log("logged out", d);
 
       this.storageProvider.clear().then(d => {
+        loader.dismiss()
         this.nav.setRoot('LoginPage');
       }).catch(e => {
+        loader.dismiss()
         console.error(e);
       });
       
     }).catch(e => {
+      loader.dismiss()
       console.error("Error : ", e);
     });
   }

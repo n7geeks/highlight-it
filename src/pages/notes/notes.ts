@@ -1,9 +1,11 @@
+import { Subscription } from 'rxjs/Subscription';
 import { Module } from './../../models/module';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, ActionSheetController } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
 import { DataProvider } from '../../providers/data/data';
 import { Note } from '../../models/note';
+import { LoadingProvider } from '../../providers/loading/loading';
 
 @IonicPage()
 @Component({
@@ -14,16 +16,22 @@ export class NotesPage {
 
   notes: Observable<any[]>;
   module: Module;
+  sub: Subscription
   
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private dataProvider: DataProvider,
+    private loadingProvider: LoadingProvider,
     public modalCtrl: ModalController,
     public actionSheetCtrl: ActionSheetController
   ) {
     this.module = this.navParams.get('module');
     console.log(this.navParams.get('module'))
+
+    let loader = this.loadingProvider.show()
+    loader.present()
+
     this.notes = this.dataProvider
       .getNotes(this.module)
       .snapshotChanges()
@@ -33,6 +41,10 @@ export class NotesPage {
           ...c.payload.val()
         }))
       })
+    
+    this.sub = this.notes.subscribe(() => {
+      loader.dismiss()
+    })
   }
 
   ionViewDidLoad() {
@@ -80,5 +92,9 @@ export class NotesPage {
     this.navCtrl.push('NoteDetailsPage', {
       'note': note
     });
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 }

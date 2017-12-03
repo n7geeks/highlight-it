@@ -1,3 +1,4 @@
+import { LoadingProvider } from './../../providers/loading/loading';
 import { ToastProvider } from './../../providers/toast/toast';
 import { HomePage } from './../home/home';
 import { AuthProvider } from './../../providers/auth/auth';
@@ -19,11 +20,14 @@ export class RegisterPage {
     private authProvider: AuthProvider,
     private storageProvider: StorageProvider,
     private toastProvider: ToastProvider,
+    private loadingProvider: LoadingProvider,
     public navCtrl: NavController,
   ) {
   }
   
   register(user: User) {
+    let loader = this.loadingProvider.show()
+    loader.present()
     this.authProvider.register(user).then(data => {
       console.log("registration successful ", data)
 
@@ -31,11 +35,14 @@ export class RegisterPage {
         this.authProvider.user.uid = uid;
         console.log(this.authProvider.user.uid);
         this.navCtrl.setRoot(HomePage);
+        loader.dismiss()
       }).catch(e => {
+        loader.dismiss()
         console.error(e);
       });
 
     }).catch(e => {
+      loader.dismiss()
       console.error("error register : ", e)
       this.toastProvider.show(e.message, 5000);
     })
