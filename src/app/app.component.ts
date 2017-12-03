@@ -53,6 +53,9 @@ export class MyApp {
   }
 
   setRootPage() {
+    let loader = this.loadingProvider.show();
+    loader.present()
+
     this.storageProvider.getUserId().then(uid => {
       if(uid) {
         this.authProvider.user.uid = uid;
@@ -63,6 +66,8 @@ export class MyApp {
         this.rootPage = 'LoginPage';
       }
     });
+
+    loader.dismiss();
   }
 
   logout() {
