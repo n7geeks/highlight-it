@@ -1,4 +1,3 @@
-import { ModulesPageModule } from './../pages/modules/modules.module';
 import { FIREBASE_CONFIG } from './app.firebase.config';
 import { BrowserModule } from '@angular/platform-browser';
 import { AngularFireModule } from 'angularfire2';
@@ -19,8 +18,6 @@ import { LoadingProvider } from '../providers/loading/loading';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { HomeModule } from '../pages/home/home.module';
-import { LoginPageModule } from '../pages/login/login.module';
 
 @NgModule({
   declarations: [
@@ -33,10 +30,7 @@ import { LoginPageModule } from '../pages/login/login.module';
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     AngularFirestoreModule,
-    IonicStorageModule.forRoot(),
-    HomeModule,
-    LoginPageModule,
-    ModulesPageModule,
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
