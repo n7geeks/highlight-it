@@ -25,6 +25,7 @@ export class AddModulePage {
     }).catch(e => {
       console.error("can't recover uid ", e);
     });
+    this.module.notesCount = 0;
   }
 
   create(module: Module) {

@@ -14,6 +14,7 @@ export class DataProvider {
     console.log('Hello DataProvider Provider');
   }
 
+  /*------------------------Modules----------------------------*/
   postModule(module: Module) {
     return this.afDatabase.list('modules').push(module);
   }
@@ -27,6 +28,7 @@ export class DataProvider {
   putModule(module: Module) {
     console.log(module);
     return this.afDatabase.list('modules').update(module.key, {
+      'notesCount': module.notesCount,
       'name': module.name,
       'hours': module.hours,
       'uid': module.uid
@@ -46,7 +48,13 @@ export class DataProvider {
   }
 
   postNote(note: Note) {
-    return this.afDatabase.list('notes').push(note);
+    let moduleRef = this.afDatabase.database.ref(`modules/${note.mid}`);
+    return this.afDatabase.list('notes').push(note).then(note => {
+      moduleRef.transaction(module => {
+        module.notesCount++;
+        return module;
+      })
+    });
   }
 
   putNote(note: Note) {
@@ -61,7 +69,13 @@ export class DataProvider {
   }
 
   deleteNote(note: Note) {
-    return this.afDatabase.list('notes').remove(note.key);
+    let moduleRef = this.afDatabase.database.ref(`modules/${note.mid}`);
+    return this.afDatabase.list('notes').remove(note.key).then(note => {
+      moduleRef.transaction(module => {
+        module.notesCount--;
+        return module;
+      })
+    });
   }
 
 }

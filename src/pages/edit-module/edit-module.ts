@@ -21,6 +21,7 @@ export class EditModulePage {
   ) {
     console.log('Hello EditModulePage');
     this.module.uid = this.authProvider.user.uid;
+    this.module.notesCount = this.viewCtrl.getNavParams().get('notesCount');
     this.module.name = this.viewCtrl.getNavParams().get('name');
     this.module.key = this.viewCtrl.getNavParams().get('key');
     this.module.hours = this.viewCtrl.getNavParams().get('hours');
@@ -35,6 +36,7 @@ export class EditModulePage {
   }
 
   delete(module: Module) {
+    console.log(module);
     this.actionSheetCtrl.create({
       title: 'Are you sure ?',
       buttons: [
@@ -42,9 +44,16 @@ export class EditModulePage {
           text: 'Delete',
           handler: () => {
             console.log("delete clicked");
-            this.dataProvider.deleteModule(module).then(() => {
-              this.dismiss();
-            });
+            if(module.notesCount != 0) {
+              console.log('cannot delete module with notes')
+              // put toast
+            } else {
+              this.dataProvider.deleteModule(module).then(() => {
+                console.log('module deleted')
+                //put toast
+              });
+            }
+            this.dismiss();
           }
         },
         {

@@ -27,20 +27,18 @@ export class NotesPage {
     this.notes = this.dataProvider
       .getNotes(this.module)
       .snapshotChanges()
-      .map(
-        changes => {
-          return changes.map(c => ({
-            key: c.payload.key,
-            ...c.payload.val()
-          }))
-        }
-      )
+      .map(changes => {
+        return changes.map(c => ({
+          key: c.payload.key,
+          ...c.payload.val()
+        }))
+      })
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad NotesPage');
   }
-
+  
   addNoteModal() {
     let noteModal = this.modalCtrl.create('AddNotePage', {
       'mid': this.module.key

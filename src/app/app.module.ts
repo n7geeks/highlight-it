@@ -16,6 +16,7 @@ import { StorageProvider } from './../providers/storage/storage';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { ToastProvider } from '../providers/toast/toast';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     DataProvider,
     StorageProvider,
     AngularFireDatabase,
+    ToastProvider,
   ]
 })
 export class AppModule {}

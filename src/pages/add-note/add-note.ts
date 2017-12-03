@@ -26,9 +26,7 @@ export class AddNotePage {
   create(note: Note) {
     console.log(note);
     note.date = (new Date).getTime();
-    this.dataProvider.postNote(note).then(ref => {
-      console.log(ref.key);
-    });
+    this.dataProvider.postNote(note);
     this.dismiss();
   }
 
