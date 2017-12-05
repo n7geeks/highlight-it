@@ -1,7 +1,7 @@
 import { StorageProvider } from './../providers/storage/storage';
 import { AuthProvider } from './../providers/auth/auth';
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform, ToastController } from 'ionic-angular';
+import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoadingProvider } from '../providers/loading/loading';
@@ -21,7 +21,6 @@ export class MyApp {
     public statusBar: StatusBar, 
     public splashScreen: SplashScreen,
     private authProvider: AuthProvider,
-    private toastCtrl: ToastController,
     private storageProvider: StorageProvider,
     private loadingProvider: LoadingProvider,
   ) {
