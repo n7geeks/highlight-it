@@ -26,7 +26,7 @@ export class AddNotePage {
     this.addNote = formBuilder.group({
       generalIdea: ['', Validators.compose([Validators.required])],
       summary: ['', Validators.compose([Validators.required])],
-      reminder: ['', Validators.compose([Validators.required]),]
+      reminder: ['', Validators.compose([Validators.required])]
     });
 
     console.log('Hello AddNotePage');
