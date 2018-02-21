@@ -4,6 +4,7 @@ import { Module } from './../../models/module';
 import { Component } from '@angular/core';
 import { ViewController, ActionSheetController, IonicPage } from 'ionic-angular';
 import { ToastProvider } from '../../providers/toast/toast';
+import { Validators, FormBuilder } from '@angular/forms';
 
 @IonicPage()
 @Component({
@@ -11,7 +12,8 @@ import { ToastProvider } from '../../providers/toast/toast';
   templateUrl: 'edit-module.html'
 })
 export class EditModulePage {
-
+  valid: boolean;
+  editModule;
   module = {} as Module
 
   constructor(
@@ -20,7 +22,14 @@ export class EditModulePage {
     private authProvider: AuthProvider,
     private toastProvider: ToastProvider,
     public actionSheetCtrl: ActionSheetController,
+    private formBuilder: FormBuilder,
   ) {
+    this.valid = true;
+    this.editModule = formBuilder.group({
+      name: ['', Validators.compose([Validators.required])],
+      hours: ['', Validators.compose([Validators.required, Validators.min(0)])]
+    });
+
     console.log('Hello EditModulePage');
     this.module.uid = this.authProvider.user.uid;
     this.module.notesCount = this.viewCtrl.getNavParams().get('notesCount');
@@ -30,6 +39,11 @@ export class EditModulePage {
   }
 
   edit(module: Module) {
+    if(!this.editModule.valid) {
+      this.valid = false;
+      return;
+    }
+    
     this.dataProvider.putModule(module).then(() => {
       this.toastProvider.show(`${module.name} saved!`);
       this.dismiss();

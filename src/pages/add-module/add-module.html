@@ -26,11 +26,9 @@
 
     <div *ngIf="!valid && addModule.getError('required', ['hours'])">
         This field is required
-        <script>console.log("error hours")</script>
     </div>
     <div *ngIf="!valid && addModule.getError('min', ['hours'])">
         Please enter a positive number
-        <script>console.log("error hours")</script>
     </div>
   </form>
 
