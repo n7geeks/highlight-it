@@ -5,6 +5,7 @@ import { IonicPage, NavController } from 'ionic-angular';
 import { User } from '../../models/user';
 import { StorageProvider } from '../../providers/storage/storage';
 import { LoadingProvider } from '../../providers/loading/loading';
+import { Validators, FormBuilder } from '@angular/forms';
 
 @IonicPage()
 @Component({
@@ -12,7 +13,8 @@ import { LoadingProvider } from '../../providers/loading/loading';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-
+  loginForm;
+  valid: boolean;
   user = {} as User;
 
   constructor(
@@ -21,10 +23,21 @@ export class LoginPage {
     private toastProvider: ToastProvider,
     private loadingProvider: LoadingProvider,
     public navCtrl: NavController,
+    private formBuilder: FormBuilder,
   ) {
+    this.valid = true;
+    this.loginForm = formBuilder.group({
+      email: ['', Validators.compose([Validators.email])],
+      password: ['', Validators.compose([Validators.required])]
+    });
   }
 
   login(user: User) {
+    if(!this.loginForm.valid) {
+      this.valid = false;
+      return;
+    }
+
     let loader = this.loadingProvider.show()
     loader.present();
     this.authProvider.login(user).then(data => {

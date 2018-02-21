@@ -1,20 +1,28 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>login</ion-title>
+    <ion-title>Welcome</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 <ion-content padding>
-    <ion-item>
-        <ion-label floating>Email</ion-label>
-        <ion-input type="text" [(ngModel)]="user.email"></ion-input>
-    </ion-item>
-    <ion-item>
-        <ion-label floating>Password</ion-label>
-        <ion-input type="password" [(ngModel)]="user.password"></ion-input>
-    </ion-item>
+    <form [formGroup]="loginForm">
+        <ion-item>
+            <ion-label floating>Email</ion-label>
+            <ion-input type="text" [(ngModel)]="user.email" formControlName="email"></ion-input>
+        </ion-item>
+        <div *ngIf="!valid && loginForm.getError('email', ['email'])">
+            Please enter a valid email
+        </div>
+        <ion-item>
+            <ion-label floating>Password</ion-label>
+            <ion-input type="password" [(ngModel)]="user.password" formControlName="password"></ion-input>
+        </ion-item>
+        <div *ngIf="!valid && loginForm.getError('required', ['password'])">
+            This field is required
+        </div>
+    </form>
 
     <button ion-button clear block (click)="login(user)">Login</button>
     <button ion-button clear block (click)="register()">Register</button>
