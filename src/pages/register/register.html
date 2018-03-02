@@ -1,20 +1,37 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>register</ion-title>
+    <ion-title>Register</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 <ion-content padding>
-  <ion-item>
-    <ion-label floating>Email</ion-label>
-    <ion-input type="text" [(ngModel)]="user.email"></ion-input>
-  </ion-item>
-  <ion-item>
-      <ion-label floating>Password</ion-label>
-      <ion-input type="password" [(ngModel)]="user.password"></ion-input>
-  </ion-item>
+  <form [formGroup]="registerForm">
+    <ion-item>
+      <ion-label floating>Email</ion-label>
+      <ion-input type="text" [(ngModel)]="user.email" formControlName="email"></ion-input>
+    </ion-item>
+    <div class="error" *ngIf="!valid && registerForm.getError('email', ['email'])">
+      Please enter a valid email
+    </div>
+
+    <ion-item>
+        <ion-label floating>Password</ion-label>
+        <ion-input type="password" [(ngModel)]="user.password" formControlName="password"></ion-input>
+    </ion-item>
+    <div class="error" *ngIf="!valid && registerForm.getError('required', ['password'])">
+      This field is required
+    </div>
+
+    <ion-item>
+        <ion-label floating>Re-type Password</ion-label>
+        <ion-input type="password" [(ngModel)]="repass" formControlName="repass"></ion-input>
+    </ion-item>
+    <div class="error" *ngIf="!valid && !passMatch()">
+      Passwords not match
+    </div>
+  </form>
 
   <button ion-button clear block (click)="register(user)">Register</button>
 </ion-content>

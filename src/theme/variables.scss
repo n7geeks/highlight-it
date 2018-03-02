@@ -44,6 +44,10 @@ $button-md-background-color: color($colors, "warning");
 $action-sheet-md-background: color($colors, "warning");
 $action-sheet-md-title-color: #F7EBE8;
 
+.error {
+  color: color($colors, "danger");
+}
+
 
 // App iOS Variables
 // --------------------------------------------------
