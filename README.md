@@ -5,7 +5,7 @@ Hybrid mobile app for managing school notes and modules using ionic 3 and Fireba
 # Steps to use it
 * clone this repo
 * run ``npm install``
-* change object at ``Highlightit/src/app/app.firebase.config.ts`` by your own firebase credentials
+* change object at ``src/app/app.firebase.config.ts`` by your own firebase credentials
 * Then the app : ``ionic build android`` or ```ionic build ios``` or run it locally : ``ionic serve``
 
 # Screenshots
